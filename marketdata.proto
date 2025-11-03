@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package marketdata;
+
+// Force generated Go code to use package "main"
+option go_package = "github.com/StefanNSTanev/stocks_CLI/marketdatapb;marketdatapb";
+
+service MarketData {
+  rpc GetDailyData (DailyRequest) returns (DailyResponse);
+}
+
+message DailyRequest {
+  string symbol = 1;
+}
+
+message DailyBar {
+  string date = 1;    // "YYYY-MM-DD"
+  double open = 2;
+  double high = 3;
+  double low = 4;
+  double close = 5;
+  int64 volume = 6;
+}
+
+message DailyResponse {
+  string symbol = 1;
+  repeated DailyBar bars = 2;
+}
